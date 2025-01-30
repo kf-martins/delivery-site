@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="./styles/output.css">
+
+    <script src="https://kit.fontawesome.com/8dd0dfde00.js" crossorigin="anonymous"></script>
+
+    <title>Delivery Site</title>
+</head>
+
+<body class="justify-items-center">
+
+    <header class="bg-mainpage bg-cover bg-center w-full h-80">
+        <div class="w-full h-full flex flex-col justify-center items-center">
+            <div class="w-auto h-auto flex flex-col justify-center items-center hover:scale-105 duration-150">
+                <img src="./assets/hamb-1.png" alt="Logo delivery" class="w-36 h-36 rounded-4xl" />
+                <h1 class="text-4xl mt-5 mb-5 font-bold text-white ">
+                    Delivery Site
+                </h1>
+            </div>
+            <span class="text-white">Rua Exemplo, 124 - PR</span>
+        </div>
+    </header>
+
+    <h1 class="text-2xl md:text-3xl font-medium text-center my-2"> CARDÁPIO </h1>
+
+    <!-- Tag da grid dos produtos-->
+    <main class="h-full max-w-7xl gap-2 grid grid-cols-1 md:grid-cols-2 justify-center items-center">
+
+        <!-- Produto de exemplo-->
+        <div class="flex gap-2 px-2 h-full hover:scale-102 duration-150">
+            <img src="./assets/hamb-1.png" alt="HAMBURGUER EXEMPLO 1" class="w-26 h-26 rounded-2xl hover:-rotate-2 hover:scale-105 duration-200">
+            <div class="flex flex-col justify-between w-full">
+                <div>
+                    <p class="font-bold text-base md:text-lg">HAMBURGUER EXEMPLO 2</p>
+                    <p class="text-sm">Lorem asdasdipsum, dolor sit admet consectets quasd sd
+                        repellenddus.</p>
+                </div>
+                <div class="flex justify-between px-2 w-full">
+                    <p class="font-medium"> R$ 20.75 </p>
+                    <button class="bg-gray-700 w-12 cursor-pointer rounded hover:scale-105 duration-150">
+                        <i class="fa-solid fa-cart-plus text-white"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Fim produto de exemplo-->
+        <!-- Produto de exemplo-->
+        <div class="flex gap-2 px-2 h-full hover:scale-102 duration-150">
+            <img src="./assets/hamb-2.png" alt="HAMBURGUER EXEMPLO 2" class="w-26 h-26 rounded-2xl hover:-rotate-2 hover:scale-105 duration-200">
+            <div class="flex flex-col justify-between">
+                <div>
+                    <p class="font-bold text-base md:text-lg">HAMBURGUER EXEMPLO 2</p>
+                    <p class="text-sm">Lorem asdasdipsum, dolor sit aasdmet consectets quasd ae adad dssdsds sd
+                        repellendasdasdasdus.</p>
+                </div>
+                <div class="flex justify-between px-2">
+                    <p class="font-medium"> R$ 20.75 </p>
+                    <button class="bg-gray-700 w-12 cursor-pointer rounded hover:scale-105 duration-150">
+                        <i class="fa-solid fa-cart-plus text-white"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Fim produto de exemplo-->
+    </main>
+
+</body>
+
+</html>
