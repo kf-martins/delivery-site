@@ -29,87 +29,48 @@
     <h1 class="text-2xl md:text-3xl font-medium text-center my-2"> CARDÁPIO </h1>
 
     <!-- Tag da grid dos produtos-->
-    <main
-        class="h-full max-w-7xl gap-2 md:gap-2 grid grid-cols-1 md:grid-cols-2 justify-center items-center p-3 bg-gray-300 rounded-xl">
+    <main id="main"
+        class="h-full max-w-7xl gap-2 md:gap-2 grid grid-cols-1 md:grid-cols-2 justify-center items-center p-3 mb-6 bg-gray-300 rounded-xl">
 
         <!-- Produto de exemplo-->
-        <div class="flex gap-2 px-2 h-full hover:scale-102 hover:bg-amber-50 duration-150 p-2 rounded-xl">
-            <img src="./assets/hamb-1.png" alt="HAMBURGUER EXEMPLO 1"
+        <!-- <div class="flex gap-2 px-2 h-full hover:scale-102 hover:bg-amber-50 duration-150 p-2 rounded-xl">
+            <img src="./assets/hamb-1.png" alt="Hamburguer 1"
                 class="w-26 h-26 rounded-2xl hover:-rotate-2 hover:scale-105 duration-200">
             <div class="flex flex-col justify-between w-full">
                 <div>
-                    <p class="font-bold text-base md:text-lg">HAMBURGUER EXEMPLO 2</p>
-                    <p class="text-sm">Lorem asdasdipsum, dolor sit admet consectets quasd sd
-                        repellenddus.</p>
+                    <p class="font-bold text-base md:text-lg">Hamburguer 1</p>
+                    <p class="text-sm">Hamburguer com queijo cheddar e cebola caramelizada.</p>
                 </div>
                 <div class="flex justify-between px-2 w-full">
-                    <p class="font-medium"> R$ 20.75 </p>
-                    <button class="bg-gray-700 w-12 cursor-pointer rounded hover:scale-105 duration-150">
+                    <p class="font-medium">R$ 22.50</p>
+                    <button class="bg-gray-700 w-12 cursor-pointer rounded hover:scale-105 duration-150 transition-colors ease-in-out active:bg-gray-950 hover:duration-300"
+                        data-name="Hamburguer 1" data-price="22.50">
                         <i class="fa-solid fa-cart-plus text-white"></i>
                     </button>
                 </div>
             </div>
-        </div>
+        </div> -->
         <!-- Fim produto de exemplo-->
-        <!-- Produto de exemplo-->
-        <div class="flex gap-2 px-2 h-full hover:scale-102 hover:bg-amber-50 duration-150 p-2 rounded-xl">
-            <img src="./assets/hamb-2.png" alt="HAMBURGUER EXEMPLO 2"
-                class="w-26 h-26 rounded-2xl hover:-rotate-2 hover:scale-105 duration-200">
-            <div class="flex flex-col justify-between">
-                <div>
-                    <p class="font-bold text-base md:text-lg">HAMBURGUER EXEMPLO 2</p>
-                    <p class="text-sm">Lorem asdasdipsum, dolor sit aasdmet consectets quasd ae adad dssdsds sd
-                        repellendasdasdasdus.</p>
-                </div>
-                <div class="flex justify-between px-2">
-                    <p class="font-medium"> R$ 20.75 </p>
-                    <button class="bg-gray-700 w-12 cursor-pointer rounded hover:scale-105 duration-150">
-                        <i class="fa-solid fa-cart-plus text-white"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-        <!-- Fim produto de exemplo-->
-        <!-- Produto de exemplo-->
-        <div class="flex gap-2 px-2 h-full hover:scale-102 hover:bg-amber-50 duration-150 p-2 rounded-xl">
-            <img src="./assets/hamb-2.png" alt="HAMBURGUER EXEMPLO 2"
-                class="w-26 h-26 rounded-2xl hover:-rotate-2 hover:scale-105 duration-200">
-            <div class="flex flex-col justify-between">
-                <div>
-                    <p class="font-bold text-base md:text-lg">HAMBURGUER EXEMPLO 2</p>
-                    <p class="text-sm">Lorem asdasdipsum, dolor sit aasdmet consectets quasd ae adad dssdsds sd
-                        repellendasdasdasdus.</p>
-                </div>
-                <div class="flex justify-between px-2">
-                    <p class="font-medium"> R$ 20.75 </p>
-                    <button class="bg-gray-700 w-12 cursor-pointer rounded hover:scale-105 duration-150">
-                        <i class="fa-solid fa-cart-plus text-white"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-        <!-- Fim produto de exemplo-->
-        <!-- Produto de exemplo-->
-        <div class="flex gap-2 px-2 h-full hover:scale-102 hover:bg-amber-50 duration-150 p-2 rounded-xl">
-            <img src="./assets/hamb-2.png" alt="HAMBURGUER EXEMPLO 2"
-                class="w-26 h-26 rounded-2xl hover:-rotate-2 hover:scale-105 duration-200">
-            <div class="flex flex-col justify-between">
-                <div>
-                    <p class="font-bold text-base md:text-lg">HAMBURGUER EXEMPLO 2</p>
-                    <p class="text-sm">Lorem asdasdipsum, dolor sit aasdmet consectets quasd ae adad dssdsds sd
-                        repellendasdasdasdus.</p>
-                </div>
-                <div class="flex justify-between px-2">
-                    <p class="font-medium"> R$ 20.75 </p>
-                    <button class="bg-gray-700 w-12 cursor-pointer rounded hover:scale-105 duration-150">
-                        <i class="fa-solid fa-cart-plus text-white"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-        <!-- Fim produto de exemplo-->
+
     </main>
 
+    <!-- Modal -->
+    <div class="bg-black/55 fixed z-40 top-0 left-0 w-full h-full justify-center items-center text-center  hidden"
+        id="modalcart">
+        <div class="bg-white rounded-2xl w-[90%] md:max-w-[700px] py-3">
+            <h1 class="font-bold text-2xl md:text-3xl"> Carrinho </h1>
+            <div class="flex flex-col items-start p-3">
+                <p>Quantidade: <span id="quantcart">0</span></p>
+                <p>Total: R$<span id="totalcart">0.00</span></p>
+                <button id="paybuttoncart"
+                    class="bg-green-400 p-2 rounded self-center text-white mt-4 active:bg-green-800 active:scale-98 transition-all ease-out duration-200">
+                    <p>Ir para pagamento</p>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 
 </html>
