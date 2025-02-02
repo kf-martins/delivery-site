@@ -30,7 +30,7 @@
 
     <!-- Tag da grid dos produtos-->
     <main id="main"
-        class="h-full max-w-7xl gap-2 md:gap-2 grid grid-cols-1 md:grid-cols-2 justify-center items-center p-3 mb-6 bg-gray-300 rounded-xl">
+        class="h-full max-w-7xl gap-2 md:gap-2 grid grid-cols-1 md:grid-cols-2 justify-center items-center p-3 mb-14 bg-gray-300 rounded-xl">
 
         <!-- Produto de exemplo-->
         <!-- <div class="flex gap-2 px-2 h-full hover:scale-102 hover:bg-amber-50 duration-150 p-2 rounded-xl">
@@ -69,6 +69,14 @@
             </div>
         </div>
     </div>
+
+    <footer class="w-full h-10 bg-gray-700 fixed bottom-0 p-1 active:bg-gray-950 transition-colors duration-200">
+        <button id="orderbtn"
+            class="w-full h-full cursor-pointer text-xl md:text-2xl text-white font-bold flex items-center justify-center gap-2 group">
+            <span class="group-hover:text-[0px] duration-200">Ver pedido e continuar</span>
+            <i class="fa-solid fa-cart-shopping text-[0px] group-hover:text-xl transition-all duration-200"></i>
+        </button>
+    </footer>
 
     <script src="script.js"></script>
 </body>
