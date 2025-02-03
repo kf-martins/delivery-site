@@ -1,14 +1,17 @@
-// const { readFile } = require('fs');
-// const path = require('path')
+//Vars
+let order = []
 
-// const fetchProductsJsonFile = async () => {
-//     const pathProducts = path.join(__dirname, 'products.json');
-//     const response = await readFile(pathProducts, 'utf-8');
-//     const products = JSON.parse(response);
+//Elements
+const main = document.getElementById("main");
+const orderbtn = document.getElementById("orderbtn");
+const modalcart = document.getElementById("modalcart");
+const closemodal = document.getElementById("closemodal");
+const ordersquant = document.getElementById("ordersquant");
+const modalproducts = document.getElementById("modalproducts");
+const totalcart = document.getElementById("totalcart");
+const removeitem = document.getElementById("removeitem");
 
-//     return products;
-// };
-
+//Functions
 const fetchProducts = async () => {
     const response = await fetch('products.json');
     const products = await response.json();
@@ -40,63 +43,114 @@ const generateProductHtmlContent = (product) => {
 const insertProductsInHtml = async () => {
     const products = await fetchProducts();
     const main = document.querySelector('main');
-    
+
     products.forEach(product => {
         main.innerHTML += generateProductHtmlContent(product);
     });
 };
 
-//Vars
-let order = []
+const showModal = () => {
+    modalcart.style.display = "flex";
+    modalcart.querySelector('.modal-content').animate([
+        { opacity: 0, transform: 'translateY(50px)' },
+        { opacity: 1, transform: 'translateY(0)' }
+    ], {
+        duration: 200,
+        easing: 'ease-out',
+        fill: 'forwards'
+    });
 
-//Elements
-const main = document.getElementById("main");
-const orderbtn = document.getElementById("orderbtn");
-const modalcart = document.getElementById("modalcart");
-const closemodal = document.getElementById("closemodal");
-const ordersquant = document.getElementById("ordersquant");
+    updateModalCart();
+}
 
+const hideModal = () => {
+    const animation = modalcart.querySelector('.modal-content').animate([
+        { opacity: 1, transform: 'translateY(0)' },
+        { opacity: 0, transform: 'translateY(50px)' }
+    ], {
+        duration: 200,
+        easing: 'ease-out',
+        fill: 'forwards'
+    });
+
+    animation.onfinish = () => {
+        modalcart.style.display = "none";
+    };
+}
+
+const addProductToOrder = (product) => {
+    const sameProduct = order.find(products => products.name === product.name)
+    // console.log(sameProduct);
+    if (sameProduct) {
+        sameProduct.quant += 1; // pointers?
+    } else {
+        order.push({ ...product, quant: 1 });
+    }
+};
+
+const updateModalCart = () => {
+
+    modalproducts.innerHTML = ``;
+    let total = 0.00;
+
+    order.forEach(product => {
+        modalproducts.innerHTML += `
+            <div class="w-full flex justify-between items-center my-2">
+                <div class="flex flex-col items-start">
+                    <p class="font-bold ">${product.name}</p>
+                    <p>Quantidade: ${product.quant}</p>
+                    <p>Preço: R$ ${(product.price * product.quant).toFixed(2)}</p>
+                </div>
+
+                <button class="remove-product cursor-pointer text-red-950" data-name="${product.name}">
+                    Remover
+                </button>
+            </div>
+        `;
+
+        total += (product.price * product.quant);
+        // console.log(total);
+    });
+
+    totalcart.textContent = total.toLocaleString("pt-BR", {
+        style: "currency",
+        currency: "BRL"
+    })
+}
 
 //Events
 document.addEventListener('DOMContentLoaded', insertProductsInHtml);
 
-orderbtn.addEventListener("click", () => {
-    modalcart.style.display = "flex";
-});
-
-closemodal.addEventListener("click", () => {
-    modalcart.style.display = "none";
-});
-
+orderbtn.addEventListener("click", showModal);
+closemodal.addEventListener("click", hideModal);
 modalcart.addEventListener("click", (event) => {
-    if(event.target === modalcart) { 
-        modalcart.style.display = "none";
+    if (event.target === modalcart) {
+        hideModal()
     }
 });
 
 main.addEventListener("click", (event) => {
-
     //Pega o botão, se for clicado no botão ou se for em um elemento filho do botão. Busca por query
     let addButton = event.target.closest(".add-product");
 
-    if(addButton) {
+    if (addButton) {
         // const product =  {name: addButton.getAttribute("data-name"), price: parseFloat(addButton.getAttribute("data-price"))}
-        const product = {...addButton.dataset, price: parseFloat(addButton.dataset.price)}
+        const product = { ...addButton.dataset, price: parseFloat(addButton.dataset.price) }
 
         // console.log(product);
         addProductToOrder(product)
-
-        ordersquant.innerText = parseInt(ordersquant.innerText)+1
+        ordersquant.innerText = order.length;
     }
-
 });
 
-const addProductToOrder = (product) => { 
-    const sameProduct = order.find(products => products.name === product.name)
-    // console.log(sameProduct);
-    if(sameProduct){
-        sameProduct.quant += 1; // pointers?
-    } else {
-        order.push({...product, quant: 1});
+modalproducts.addEventListener("click", (event) => {
+    if(event.target.classList.contains("remove-product")){
+        const name = event.target.getAttribute("data-name");
+
+        const indexOrder = order.findIndex(product => product.name === name);        
+        order.splice(indexOrder, 1);
+        
+        updateModalCart();
+        ordersquant.innerText = order.length;
     }
-};
+});
