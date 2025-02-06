@@ -1,0 +1,50 @@
+[
+    {
+        "name": "Hamburguer 1",
+        "desc": "Hamburguer com queijo cheddar e cebola caramelizada.",
+        "price": 22.50,
+        "icon": "./assets/hamb-1.png"
+    },
+    {
+        "name": "Hamburguer 2",
+        "desc": "Delicioso hamburguer com ingredientes frescos e saborosos.",
+        "price": 20.75,
+        "icon": "./assets/hamb-2.png"
+    },
+    {
+        "name": "Hamburguer 3",
+        "desc": "Hamburguer suculento com queijo derretido e bacon crocante.",
+        "price": 25.00,
+        "icon": "./assets/hamb-3.png"
+    },
+    {
+        "name": "Hamburguer 4",
+        "desc": "Uma explosão de sabores com nosso molho especial.",
+        "price": 23.50,
+        "icon": "./assets/hamb-4.png"
+    },
+    {
+        "name": "Hamburguer 5",
+        "desc": "Hamburguer clássico com alface, tomate e picles.",
+        "price": 19.99,
+        "icon": "./assets/hamb-5.png"
+    },
+    {
+        "name": "Hamburguer 6",
+        "desc": "Experimente nosso hamburguer gourmet com ingredientes premium.",
+        "price": 27.50,
+        "icon": "./assets/hamb-6.png"
+    },
+    {
+        "name": "Hamburguer 7",
+        "desc": "Hamburguer vegetariano com um sabor incrível.",
+        "price": 21.00,
+        "icon": "./assets/hamb-7.png"
+    },
+    {
+        "name": "Hamburguer 8",
+        "desc": "Hamburguer picante para os amantes de pimenta.",
+        "price": 24.00,
+        "icon": "./assets/hamb-8.png"
+    }
+]
