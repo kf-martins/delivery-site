@@ -10,13 +10,41 @@ const ordersquant = document.getElementById("ordersquant");
 const modalproducts = document.getElementById("modalproducts");
 const totalcart = document.getElementById("totalcart");
 const removeitem = document.getElementById("removeitem");
+const paybuttoncart = document.getElementById("paybuttoncart");
 
 //Functions
 const fetchProducts = async () => {
-    const response = await fetch('products.json');
+    // const response = await fetch('products.json');
+    const response = await fetch('/api/products');
     const products = await response.json();
+    // console.log(products);
+
     return products;
 };
+
+const fetchOrderPost = () => {
+    fetch('api/orders', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(order)
+    }).then(response => {
+        if (!response.ok) {
+            throw new Error(`Erro: ${response.statusText}`);
+        }
+        return response.text();
+    }).then(data => {
+        // console.log(`Resposta: ${data}`);
+        order = [];
+        ordersquant.innerText = 0;
+        updateModalCart();
+
+    }).catch(error => {
+        console.log(`Ocorreu um erro ao enviar o pedido! Erro: ${error}`);
+        
+    });
+}
 
 const generateProductHtmlContent = (product) => {
     return `
@@ -122,7 +150,9 @@ const updateModalCart = () => {
 document.addEventListener('DOMContentLoaded', insertProductsInHtml);
 
 orderbtn.addEventListener("click", showModal);
+
 closemodal.addEventListener("click", hideModal);
+
 modalcart.addEventListener("click", (event) => {
     if (event.target === modalcart) {
         hideModal()
@@ -144,13 +174,23 @@ main.addEventListener("click", (event) => {
 });
 
 modalproducts.addEventListener("click", (event) => {
-    if(event.target.classList.contains("remove-product")){
+    if (event.target.classList.contains("remove-product")) {
         const name = event.target.getAttribute("data-name");
 
-        const indexOrder = order.findIndex(product => product.name === name);        
+        const indexOrder = order.findIndex(product => product.name === name);
         order.splice(indexOrder, 1);
-        
+
         updateModalCart();
         ordersquant.innerText = order.length;
+    }
+});
+
+paybuttoncart.addEventListener("click", () => {
+    if(order.length === 0){
+        // TODO: Fazer uma notificação para caso o pedido esteja vazio
+        alert(`Nenhum produto foi adicionado!`);
+        
+    } else {
+        fetchOrderPost();
     }
 });
